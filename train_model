@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jan 10 20:44:03 2018
+
+@author: jtcies
+"""
+
+import gym
+import random
+import numpy as np
+
+env = gym.make("CartPole-v0")
+
+def gen_data(attempts, steps):
+    
+    data = []
+    
+    for i in range(attempts):
+        
+        env.reset()
+        
+        game_score = 0
+                        
+        for j in range(steps):
+                    
+            action = env.action_space.sample()
+        
+            observation, reward, done, info = env.step(action)
+            
+            game_score += reward
+            
+            if done:
+                
+                break
+        
+        print(game_score)
+
+
+gen_data(50, 300)
+
+
